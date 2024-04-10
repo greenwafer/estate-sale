@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/estate-sale/static/css/main.5a07d236.css",
+    "main.js": "/estate-sale/static/js/main.e6ba6d61.js",
+    "static/js/453.ed173e44.chunk.js": "/estate-sale/static/js/453.ed173e44.chunk.js",
+    "index.html": "/estate-sale/index.html",
+    "main.5a07d236.css.map": "/estate-sale/static/css/main.5a07d236.css.map",
+    "main.e6ba6d61.js.map": "/estate-sale/static/js/main.e6ba6d61.js.map",
+    "453.ed173e44.chunk.js.map": "/estate-sale/static/js/453.ed173e44.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5a07d236.css",
+    "static/js/main.e6ba6d61.js"
+  ]
+}
