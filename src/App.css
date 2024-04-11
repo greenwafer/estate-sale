@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --bg-primary: #8d8484;
+    --bg-secondary: #6b6161;
+    --bg-accent: rgba(134, 134, 134, 0.47);
+    --bg-text: #ffffff;
+    --bg-textdark: #b7b7b7;
+
+    --form-bg: #8d7979;
+    --form-text: #000;
+    --form-border: var(--bg-accent);
+
+    --tab-bg: var(--bg-secondary);
+    --tab-text: #000000;
+}
+
+
+html * {
+    font-family: "Andale Mono", serif;
+}
+
+html {
+    background-color: var(--bg-primary);
+    color: var(--bg-text);
+}
+
+a {
+    color: #5affbd;
+}
+
+form {
+    margin: 0;
+    padding: 0;
+}
+
+.window{
+    display: flex;
+    width: 90vw;
+    background-color: var(--bg-secondary);
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-inline: 10px;
+    padding-bottom: 40px;
+    align-items: center;
+    flex-direction: column;
+}
+
+.break-row {
+    flex-basis: 100%;
+    height:0;
+}
+
+.break-col {
+    flex-basis: 100%;
+    width:0;
+}
+
+.centered {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.warning {
+    text: #ff0000;
+}
+
+.tab-row {
+    display: flex;
+    width: 90vw;
+    background-color: var(--tab-bg);
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-inline: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.tab-col {
+    display: flex;
+    width: 90vw;
+    background-color: var(--tab-bg);
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-inline: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+.tab-line {
+    display: flex;
+    background-color: var(--tab-bg);
+    border-radius: 5px;
+    padding-inline: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+
+.price-entry {
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 0;
+}
+
+button{
+    height: 30px;
+    width: 100px;
+    padding-left: 5px;
+    justify-content: center;
+    border-radius: 5px;
+    background-color: var(--bg-primary);
+    color: var(--bg-text);
+}
+
+button:hover{
+    background-color: var(--bg-accent);
+    color: var(--bg-textdark);
+}
+
+
+textarea{
+    display: block;
+    margin-top: 5px;
+    margin-left: 12.5%;
+    width: 800px;
+    background-color: var(--form-bg);
+    flex-grow: inherit;
+    padding: 0;
+    border: 1px solid #ccc;
+}
+
+input{
+    display: block;
+    margin-top: 5px;
+    margin-left: 12.5%;
+    width: 800px;
+    background-color: var(--form-bg);
+    flex-grow: inherit;
+    padding: 0;
+    border: 1px solid #ccc;
+}
