@@ -1,5 +1,5 @@
 import './App.css';
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import {buildTimeValue} from "@testing-library/user-event/dist/utils";
 
 
@@ -27,25 +27,25 @@ function eraseCookie(name) {
 }
 
 function App() {
+
     const [inputFields, setInputFields] = useState([
         {value: ' '}
     ])
     const [usePrices, setUsePrices] = useState(false)
 
-    const handleFormChange = (index, event) => {
+    const handleFormChange = (index, event, updateWhenChanged = false) => {
         let data = [...inputFields];
         data[index][event.target.name] = event.target.value;
-        setInputFields(data);
 
-        processText();
+        if(updateWhenChanged) processText();
     }
 
     const handlePriceChange = (index, event, type, subtype) => {
         let data = [...inputFields];
         data[index][event.target.name] = event.target.value;
 
-        setCookie(type + subtype, event.target.value, 7);
         setInputFields(data);
+        setCookie(type + subtype, event.target.value, 7);
 
         if(usePrices) processText();
     }
@@ -104,9 +104,6 @@ function App() {
 
     const toggleUsePrices = () => {
         setUsePrices(!usePrices);
-
-        processText();
-        processText();
     }
 
     const savePrices = () => {
@@ -114,8 +111,8 @@ function App() {
             for(const subtype in inventory[type]) {
                 if(document.getElementById(type + subtype) != null) {
                     let value = (document.getElementById(type + subtype).value)
-                    if(value == null) setCookie(type + subtype, 0, 7);
-                    setCookie(type + subtype, document.getElementById(type + subtype).value);
+                    if(value == null) setCookie(type + subtype, "n/a", 7);
+                    else setCookie(type + subtype, document.getElementById(type + subtype).value);
                 }
             }
         }
@@ -294,7 +291,7 @@ IGN: \`[PUT-IGN-HERE]\`
         }
     }
 
-
+    loadPrices();
     const usePricesColor = (usePrices) ? "#3a3a3a" : "rgba(185,185,185,0.32)";
     return (
         <div className="centered">
@@ -305,10 +302,12 @@ IGN: \`[PUT-IGN-HERE]\`
                 <p> 2. Pick your relevant tabs + coffin option </p>
                 <p> 3. Hit Full Text & Nitro</p>
                 <p> 4. Generate Text </p>
-                <p> 5. Paste generated text into the box below and hit trade</p>
+                <p> 5. Paste generated text into the box on the left</p>
                 <p> 6. Change prices as needed in the output box </p>
-                <p className="warning"> * Will not do unique and base-type corpses * </p>
-                <p className="warning"> * Not a perfect tool but good enough for me * </p>
+                <p className="warning" style={{color:"#ffffff"}}> * Will not do unique and base-type corpses * </p>
+                <p className="warning" style={{color:"#ffffff"}}> * If you have anything saved from a previous session
+                    hit load before modifying anything! * </p>
+
 
                 <div className="tab-row">
                     <form>
@@ -323,7 +322,7 @@ IGN: \`[PUT-IGN-HERE]\`
                                         value={input.input}
                                         style={{marginRight: 0}}
                                         className="w-9/12 self-center"
-                                        onChange={event => handleFormChange(index, event)}
+                                        onChange={event => handleFormChange(index, event, true)}
                                     />
                                 </div>
                             </>)
@@ -351,7 +350,7 @@ IGN: \`[PUT-IGN-HERE]\`
                 Prices
                 <div className="tab-line">
                     {<button style={{width: 180, height: 50,
-                    color:"#ffffff", backgroundColor: usePricesColor}} onClick={() => toggleUsePrices()}>
+                    color:"#ffffff", backgroundColor: usePricesColor}} onClick={() => {toggleUsePrices(); processText();}}>
                         Use Custom</button>}
                     {<button style={{width: 180, height: 50, margin: "5px"}} onClick={() => {savePrices();}}> Save Prices</button>}
                     {<button style={{width: 180, height: 50}} onClick={() => {loadPrices();}}> Load Prices</button>}
